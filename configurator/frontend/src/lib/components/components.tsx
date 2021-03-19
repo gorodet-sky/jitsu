@@ -32,7 +32,7 @@ export function Preloader(props: IPreloaderProps) {
   //in pre-react boot loader
   return (
     <div style={{}} className="preloader-wrapper">
-      <img src="boot/loading.gif" alt="[loading]" className="preloader-image" />
+      <img src="/boot/loading.gif" alt="[loading]" className="preloader-image" />
       <div className="preloader-text">{text}</div>
     </div>
   );

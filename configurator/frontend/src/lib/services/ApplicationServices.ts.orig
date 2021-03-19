@@ -42,7 +42,7 @@ export class ApplicationConfiguration {
   }
 
   get backendApiBase(): string {
-    return this._backendApiBase || `${window.location.protocol}//${window.location.host}/`;
+    return this._backendApiBase;
   }
 
   get rawConfig(): RawConfigObject {
