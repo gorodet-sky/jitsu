@@ -22,9 +22,11 @@ export class ApplicationConfiguration {
 
   constructor() {
     this._rawConfig = getRawApplicationConfig();
-    let backendApiBase = this._rawConfig.env.BACKEND_API_BASE || `${window.location.protocol}//${window.location.host}`
+    if (!this._rawConfig.env.BACKEND_API_BASE) {
+      throw new Error('BACKEND_API_BASE env var must be provided');
+    }
     this._firebaseConfig = this._rawConfig.firebase;
-    this._backendApiBase = concatenateURLs(backendApiBase, '/api/v1');
+    this._backendApiBase = concatenateURLs(this._rawConfig.env.BACKEND_API_BASE, '/api/v1');
     this._appEnvironment = (this._rawConfig.env.NODE_ENV || 'production').toLowerCase() as AppEnvironmentType;
 
     console.log(
