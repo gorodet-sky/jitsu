@@ -34,6 +34,7 @@ module.exports = {
       /**
        * Once alias added here, it should be added to tsconfig.paths.json as well
        */
+      '@.': path.resolve(__dirname, './src/'),
       '@atom': path.resolve(__dirname, './src/ui/components/atom'),
       '@molecule': path.resolve(__dirname, './src/ui/components/molecule'),
       '@page': path.resolve(__dirname, './src/ui/pages'),
@@ -44,6 +45,11 @@ module.exports = {
     plugins: [
       new webpack.DefinePlugin({
         'process.env': {
+          GIT_HEAD: JSON.stringify(process.env.HEAD || null),
+          GIT_BRANCH: JSON.stringify(process.env.BRANCH || null),
+          GIT_COMMIT_REF: JSON.stringify(process.env.COMMIT_REF || null),
+          BUILD_TIMESTAMP: JSON.stringify(new Date().toISOString()),
+          BUILD_ID: JSON.stringify(process.env.BUILD_ID || null),
           BACKEND_API_BASE: JSON.stringify(process.env.BACKEND_API_BASE),
           NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production'),
           ANALYTICS_KEYS: JSON.stringify(process.env.ANALYTICS_KEYS || null),
